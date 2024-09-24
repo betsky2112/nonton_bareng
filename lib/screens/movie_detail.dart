@@ -42,18 +42,60 @@ class MovieDetailScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Tambahkan informasi film seperti gambar, sinopsis, dll.
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              movie.overview,
-              style: const TextStyle(fontSize: 16),
-            ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Menampilkan poster film
+              Image.network(
+                'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                movie.title,
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Release Date: ${movie.releaseDate}',
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Rating: ${movie.rating}/10',
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Runtime: ${movie.runTime} minutes',
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Overview',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                movie.overview,
+                style: const TextStyle(fontSize: 16),
+              ),
+              // Tempat untuk menampilkan trailer jika tersedia
+              const SizedBox(height: 16),
+              // Jika Anda mendapatkan link trailer, tampilkan di sini
+              // Contoh:
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // Navigasi ke trailer atau tampilkan modal
+              //   },
+              //   child: Text('Watch Trailer'),
+              // ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

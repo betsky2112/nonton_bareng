@@ -31,4 +31,15 @@ class ApiService {
       throw Exception('Failed to search movies');
     }
   }
+
+  Future<Movie> fetchMovieDetails(int movieId) async {
+    final response = await http.get(Uri.parse('$_baseUrl/movie/$movieId?api_key=$_apiKey'));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      return Movie.fromJson(data);
+    } else {
+      throw Exception('Failed to load movie details');
+    }
+  }
 }
