@@ -4,7 +4,7 @@ class Movie {
   final String overview;
   final String posterPath;
   final double rating;
-  final String releaseData;
+  final String releaseDate;
 
   Movie(
       {required this.id,
@@ -12,7 +12,7 @@ class Movie {
       required this.overview,
       required this.posterPath,
       required this.rating,
-      required this.releaseData});
+      required this.releaseDate});
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
@@ -21,7 +21,18 @@ class Movie {
       overview: json['overview'] ?? '',
       posterPath: json['poster_path'] ?? '',
       rating: json['vote_average'].toDouble(),
-      releaseData: json['release_date'] ?? '',
+      releaseDate: json['release_date'] ?? '',
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'overview': overview,
+      'posterPath': posterPath,
+      'rating': rating,
+      'releaseDate': releaseDate,
+    };
   }
 }
